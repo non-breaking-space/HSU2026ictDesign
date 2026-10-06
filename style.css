@@ -6,13 +6,13 @@
 }
 
 html {
-  background: #0b0b0c;
+  background: #f5f3ee;
 }
 
 body {
   font-family: "Pretendard", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
-  color: #ffffff;
-  background: #0b0b0c;
+  color: #111111;
+  background: #f5f3ee;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -63,15 +63,15 @@ button {
   font-weight: 500;
   line-height: 1.5;
   text-align: left;
-  color: #d9d9d9;
+  color: #555555;
   white-space: nowrap;
   transition: color 0.15s, background 0.15s;
 }
 
 .sidebar .name-list .name-item:hover,
 .sidebar .name-list .name-item.is-active {
-  color: #000000;
-  background: #ffffff;
+  color: #ffffff;
+  background: #111111;
 }
 
 /* ---------- 오른쪽 무대 ---------- */
@@ -87,7 +87,7 @@ button {
   z-index: 10;
   padding: 22px 0 18px;
   text-align: center;
-  background: linear-gradient(#0b0b0c 60%, rgba(11, 11, 12, 0));
+  background: linear-gradient(#f5f3ee 60%, rgba(245, 243, 238, 0));
 }
 
 .stage .stage-header .stage-title {
@@ -100,12 +100,12 @@ button {
 
 .stage .stage-header .stage-title .stage-title-sub {
   font-weight: 500;
-  color: #bdbdbd;
+  color: #777777;
 }
 
 .stage .stage-header .stage-title .stage-title-main {
   font-weight: 800;
-  color: #ffffff;
+  color: #111111;
 }
 
 /* ---------- 포스터 벽 ---------- */
@@ -130,10 +130,10 @@ button {
   flex-direction: column;
   justify-content: space-between;
   width: 100%;
-  aspect-ratio: 5 / 7;
+  aspect-ratio: 1 / 1;
   padding: 10% 9% 8%;
   text-align: left;
-  color: #000000;
+  color: #111111;
   background: #ffffff;
   cursor: pointer;
   opacity: 0;
@@ -144,14 +144,6 @@ button {
 .wall .wall-column .poster.is-shown {
   opacity: 1;
   transform: translateY(0);
-}
-
-.wall .wall-column .poster.poster-short {
-  aspect-ratio: 5 / 4;
-}
-
-.wall .wall-column .poster.poster-wide {
-  aspect-ratio: 5 / 2;
 }
 
 .wall .wall-column .poster .poster-text {
@@ -165,61 +157,68 @@ button {
 
 .wall .wall-column .poster .poster-author {
   padding-top: 6px;
-  font-size: 9px;
-  font-weight: 500;
+  font-size: 10px;
+  font-weight: 600;
   line-height: 1.4;
-  border-top: 1px solid #000000;
+  border-top: 1px solid #111111;
 }
 
-.wall .wall-column .poster.poster-wide .poster-author {
-  display: none;
+/* ---------- 학종이 그라데이션 (안쪽 → 바깥쪽) ----------
+   가운데의 밝은 색에서 가장자리의 진한 색으로 퍼집니다.
+   벽의 포스터와 확대 보기에 같은 배경을 씁니다. */
+.wall .wall-column .poster.color-orange,
+.viewer .viewer-poster.color-orange {
+  background: radial-gradient(ellipse at center, #fffbe0 0%, #ffd84d 34%, #ff8a3d 68%, #ff4f6d 100%);
 }
 
-/* 포스터 색상 + 빛 번짐 */
-.wall .wall-column .poster.color-orange {
-  background: #ff5a1f;
-  box-shadow: 0 0 36px rgba(255, 90, 31, 0.35);
+.wall .wall-column .poster.color-green,
+.viewer .viewer-poster.color-green {
+  background: radial-gradient(ellipse at center, #fdffd6 0%, #c8f560 34%, #4fdc8a 68%, #19b8c4 100%);
 }
 
-.wall .wall-column .poster.color-green {
-  background: #3dff5e;
-  box-shadow: 0 0 36px rgba(61, 255, 94, 0.35);
+.wall .wall-column .poster.color-lavender,
+.viewer .viewer-poster.color-lavender {
+  background: radial-gradient(ellipse at center, #ffffff 0%, #f3c9ff 34%, #b9a6ff 68%, #6f8cff 100%);
 }
 
-.wall .wall-column .poster.color-lavender {
-  background: #b9a6ff;
-  box-shadow: 0 0 36px rgba(185, 166, 255, 0.35);
+.wall .wall-column .poster.color-peach,
+.viewer .viewer-poster.color-peach {
+  background: radial-gradient(ellipse at center, #fffdf0 0%, #ffe0b0 34%, #ffab91 68%, #ff7fa8 100%);
 }
 
-.wall .wall-column .poster.color-peach {
-  background: #f3b88a;
-  box-shadow: 0 0 36px rgba(243, 184, 138, 0.3);
+.wall .wall-column .poster.color-blue,
+.viewer .viewer-poster.color-blue {
+  background: radial-gradient(ellipse at center, #f2ffff 0%, #a8ecff 34%, #5cb8ff 68%, #6a7dff 100%);
 }
 
-.wall .wall-column .poster.color-blue {
-  background: #3d9bff;
-  box-shadow: 0 0 36px rgba(61, 155, 255, 0.35);
+.wall .wall-column .poster.color-magenta,
+.viewer .viewer-poster.color-magenta {
+  background: radial-gradient(ellipse at center, #fff3c4 0%, #ffa6d9 34%, #ff4fc4 68%, #b04bff 100%);
 }
 
-.wall .wall-column .poster.color-magenta {
-  background: #ff1fd2;
-  box-shadow: 0 0 36px rgba(255, 31, 210, 0.4);
+.wall .wall-column .poster.color-cream,
+.viewer .viewer-poster.color-cream {
+  background: radial-gradient(ellipse at center, #ffffff 0%, #fff3b8 34%, #ffd27a 68%, #9fe0a0 100%);
 }
 
-.wall .wall-column .poster.color-cream {
-  background: #f6d6ad;
-  box-shadow: 0 0 36px rgba(246, 214, 173, 0.3);
-}
+/* 색상별 부드러운 그림자 */
+.wall .wall-column .poster.color-orange { box-shadow: 0 10px 28px rgba(255, 110, 70, 0.28); }
+.wall .wall-column .poster.color-green { box-shadow: 0 10px 28px rgba(40, 190, 150, 0.28); }
+.wall .wall-column .poster.color-lavender { box-shadow: 0 10px 28px rgba(130, 130, 255, 0.28); }
+.wall .wall-column .poster.color-peach { box-shadow: 0 10px 28px rgba(255, 140, 150, 0.26); }
+.wall .wall-column .poster.color-blue { box-shadow: 0 10px 28px rgba(90, 150, 255, 0.28); }
+.wall .wall-column .poster.color-magenta { box-shadow: 0 10px 28px rgba(210, 80, 230, 0.28); }
+.wall .wall-column .poster.color-cream { box-shadow: 0 10px 28px rgba(200, 190, 110, 0.28); }
 
 .wall .wall-column .poster:hover {
   transform: translateY(-4px) scale(1.02);
-  filter: brightness(1.08);
+  filter: saturate(1.15);
   z-index: 2;
 }
 
-/* 이름에 마우스를 올렸을 때: 해당 포스터만 남기고 어둡게 */
+/* 이름에 마우스를 올렸을 때: 해당 포스터만 남기고 흐리게 */
 .wall.is-dimmed .wall-column .poster.is-shown {
-  opacity: 0.12;
+  opacity: 0.15;
 }
 
 .wall.is-dimmed .wall-column .poster.is-shown.is-active {
@@ -237,7 +236,7 @@ button {
   align-items: center;
   justify-content: center;
   padding: 40px;
-  background: rgba(0, 0, 0, 0.88);
+  background: rgba(245, 243, 238, 0.92);
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.25s ease, visibility 0.25s ease;
@@ -254,19 +253,20 @@ button {
   right: 28px;
   font-size: 36px;
   line-height: 1;
-  color: #ffffff;
+  color: #111111;
 }
 
 .viewer .viewer-poster {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: min(84vh, 780px);
-  aspect-ratio: 5 / 7;
+  height: min(80vh, 680px);
+  aspect-ratio: 1 / 1;
   max-width: 100%;
   padding: 56px 48px 40px;
-  color: #000000;
+  color: #111111;
   background: #ffffff;
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.18);
   transform: scale(0.94);
   transition: transform 0.25s ease;
 }
@@ -287,17 +287,9 @@ button {
 .viewer .viewer-poster .viewer-author {
   padding-top: 12px;
   font-size: 14px;
-  font-weight: 500;
-  border-top: 2px solid #000000;
+  font-weight: 600;
+  border-top: 2px solid #111111;
 }
-
-.viewer .viewer-poster.color-orange { background: #ff5a1f; box-shadow: 0 0 90px rgba(255, 90, 31, 0.5); }
-.viewer .viewer-poster.color-green { background: #3dff5e; box-shadow: 0 0 90px rgba(61, 255, 94, 0.5); }
-.viewer .viewer-poster.color-lavender { background: #b9a6ff; box-shadow: 0 0 90px rgba(185, 166, 255, 0.5); }
-.viewer .viewer-poster.color-peach { background: #f3b88a; box-shadow: 0 0 90px rgba(243, 184, 138, 0.45); }
-.viewer .viewer-poster.color-blue { background: #3d9bff; box-shadow: 0 0 90px rgba(61, 155, 255, 0.5); }
-.viewer .viewer-poster.color-magenta { background: #ff1fd2; box-shadow: 0 0 90px rgba(255, 31, 210, 0.55); }
-.viewer .viewer-poster.color-cream { background: #f6d6ad; box-shadow: 0 0 90px rgba(246, 214, 173, 0.45); }
 
 /* ---------- 반응형 ---------- */
 @media (max-width: 720px) {
