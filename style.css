@@ -40,23 +40,33 @@ button {
   right: 0;
   bottom: 0;
   z-index: 20;
-  padding: 10px 24px 12px;
-  background: rgba(245, 243, 238, 0.88);
-  -webkit-backdrop-filter: blur(10px);
-  backdrop-filter: blur(10px);
+  padding: 10px 0 12px;
+  background: #f5f3ee;
   border-top: 1px solid #111111;
 }
 
+/* 한 줄로 고르게 펼치고, 화면이 좁으면 좌우로 스크롤 */
 .name-bar .name-list {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 2px 4px;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  gap: 0;
+  padding: 0 20px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.name-bar .name-list::-webkit-scrollbar {
+  display: none;
+}
+
+.name-bar .name-list li {
+  flex: 0 0 auto;
 }
 
 .name-bar .name-list .name-item {
   display: block;
-  padding: 2px 6px;
+  padding: 2px 4px;
   font-size: 12px;
   font-weight: 500;
   line-height: 1.5;
@@ -75,7 +85,7 @@ button {
 .page .stage {
   flex: 1 1 auto;
   min-width: 0;
-  padding: 0 32px 180px;
+  padding: 0 32px 140px;
 }
 
 .stage .stage-header {
@@ -295,15 +305,7 @@ button {
   }
 
   .name-bar .name-list {
-    flex-wrap: nowrap;
-    justify-content: flex-start;
     padding: 0 12px;
-    overflow-x: auto;
-    scrollbar-width: none;
-  }
-
-  .name-bar .name-list::-webkit-scrollbar {
-    display: none;
   }
 
   .page .stage {
