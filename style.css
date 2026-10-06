@@ -30,55 +30,52 @@ button {
 
 /* ---------- 전체 레이아웃 ---------- */
 .page {
-  display: flex;
   min-height: 100vh;
 }
 
-/* ---------- 왼쪽 이름 목록 ---------- */
-.page .sidebar {
-  position: sticky;
-  top: 0;
-  flex: 0 0 120px;
-  height: 100vh;
-  padding: 24px 0 24px 16px;
-  overflow-y: auto;
-  scrollbar-width: none;
+/* ---------- 하단 이름 목록 ---------- */
+.page .name-bar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 20;
+  padding: 10px 24px 12px;
+  background: rgba(245, 243, 238, 0.88);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border-top: 1px solid #111111;
 }
 
-.page .sidebar::-webkit-scrollbar {
-  display: none;
-}
-
-.sidebar .name-list {
+.name-bar .name-list {
   display: flex;
-  flex-direction: column;
-  gap: 2px;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2px 4px;
 }
 
-.sidebar .name-list .name-item {
+.name-bar .name-list .name-item {
   display: block;
-  width: 100%;
   padding: 2px 6px;
   font-size: 12px;
   font-weight: 500;
   line-height: 1.5;
-  text-align: left;
   color: #555555;
   white-space: nowrap;
   transition: color 0.15s, background 0.15s;
 }
 
-.sidebar .name-list .name-item:hover,
-.sidebar .name-list .name-item.is-active {
+.name-bar .name-list .name-item:hover,
+.name-bar .name-list .name-item.is-active {
   color: #ffffff;
   background: #111111;
 }
 
-/* ---------- 오른쪽 무대 ---------- */
+/* ---------- 무대 ---------- */
 .page .stage {
   flex: 1 1 auto;
   min-width: 0;
-  padding: 0 32px 120px 16px;
+  padding: 0 32px 180px;
 }
 
 .stage .stage-header {
@@ -293,31 +290,24 @@ button {
 
 /* ---------- 반응형 ---------- */
 @media (max-width: 720px) {
-  .page {
-    flex-direction: column;
+  .page .name-bar {
+    padding: 8px 0 10px;
   }
 
-  .page .sidebar {
-    position: static;
-    flex: 0 0 auto;
-    width: 100%;
-    height: auto;
-    padding: 14px 12px 0;
+  .name-bar .name-list {
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    padding: 0 12px;
     overflow-x: auto;
-    overflow-y: hidden;
+    scrollbar-width: none;
   }
 
-  .sidebar .name-list {
-    flex-direction: row;
-    gap: 4px;
-  }
-
-  .sidebar .name-list .name-item {
-    width: auto;
+  .name-bar .name-list::-webkit-scrollbar {
+    display: none;
   }
 
   .page .stage {
-    padding: 0 14px 80px;
+    padding: 0 14px 110px;
   }
 
   .stage .wall {
