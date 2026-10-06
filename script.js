@@ -42,11 +42,9 @@ const COLUMN_OFFSETS = [48, 0, 96, 24, 64, 12];
    ========================================================= */
 const wall = document.getElementById("wall");
 const nameList = document.getElementById("nameList");
-const viewer = document.getElementById("viewer");
-const viewerPoster = document.getElementById("viewerPoster");
-const viewerText = document.getElementById("viewerText");
-const viewerAuthor = document.getElementById("viewerAuthor");
-const viewerClose = document.getElementById("viewerClose");
+
+/* 펼쳐 둔 박스 번호 — 창 크기를 바꿔 다시 그려도 유지됩니다. */
+const opened = new Set();
 
 let currentColumnCount = 0;
 
@@ -100,6 +98,7 @@ function renderNames() {
       const target = wall.querySelector('.poster[data-index="' + index + '"]');
       if (target) {
         target.scrollIntoView({ behavior: "smooth", block: "center" });
+        setOpen(index, true);
       }
     });
 
@@ -134,6 +133,10 @@ function renderWall() {
     poster.className = "poster color-" + item.color;
     poster.dataset.index = index;
 
+    /* 안쪽: 감상평 */
+    const inner = document.createElement("div");
+    inner.className = "poster-inner";
+
     const text = document.createElement("p");
     text.className = "poster-text";
     text.textContent = item.text;
@@ -142,12 +145,33 @@ function renderWall() {
     author.className = "poster-author";
     author.textContent = item.author;
 
-    poster.appendChild(text);
-    poster.appendChild(author);
+    inner.appendChild(text);
+    inner.appendChild(author);
+    poster.appendChild(inner);
+
+    /* 덮개: 삼각형 날개 네 장 */
+    ["top", "right", "bottom", "left"].forEach(function (side) {
+      const flap = document.createElement("span");
+      flap.className = "poster-flap flap-" + side;
+      poster.appendChild(flap);
+    });
+
+    /* 접는 선 + 가운데 이름 */
+    const folds = document.createElement("span");
+    folds.className = "poster-folds";
+    poster.appendChild(folds);
+
+    const name = document.createElement("span");
+    name.className = "poster-name";
+    name.textContent = item.author;
+    poster.appendChild(name);
+
+    if (opened.has(index)) poster.classList.add("is-open");
+    poster.setAttribute("aria-expanded", opened.has(index) ? "true" : "false");
 
     poster.addEventListener("mouseenter", function () { markName(index, true); });
     poster.addEventListener("mouseleave", function () { markName(index, false); });
-    poster.addEventListener("click", function () { openViewer(index); });
+    poster.addEventListener("click", function () { setOpen(index, !opened.has(index)); });
 
     columns[position % columnCount].appendChild(poster);
 
@@ -183,31 +207,19 @@ function markName(index, isOn) {
 }
 
 /* =========================================================
-   7. 확대 보기
+   7. 펼치기 / 접기
    ========================================================= */
-function openViewer(index) {
-  const item = POSTERS[index];
-  viewerPoster.className = "viewer-poster color-" + item.color;
-  viewerText.textContent = item.text;
-  viewerAuthor.textContent = item.author;
-  viewer.classList.add("is-open");
-  viewer.setAttribute("aria-hidden", "false");
+function setOpen(index, isOpen) {
+  if (isOpen) {
+    opened.add(index);
+  } else {
+    opened.delete(index);
+  }
+  const poster = wall.querySelector('.poster[data-index="' + index + '"]');
+  if (!poster) return;
+  poster.classList.toggle("is-open", isOpen);
+  poster.setAttribute("aria-expanded", isOpen ? "true" : "false");
 }
-
-function closeViewer() {
-  viewer.classList.remove("is-open");
-  viewer.setAttribute("aria-hidden", "true");
-}
-
-viewerClose.addEventListener("click", closeViewer);
-
-viewer.addEventListener("click", function (event) {
-  if (event.target === viewer) closeViewer();
-});
-
-document.addEventListener("keydown", function (event) {
-  if (event.key === "Escape") closeViewer();
-});
 
 /* =========================================================
    8. 시작
