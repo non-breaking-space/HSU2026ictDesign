@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>포스터 월</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="page">
+
+    <!-- 왼쪽: 참여자 이름 목록 -->
+    <aside class="sidebar">
+      <ul class="name-list" id="nameList"></ul>
+    </aside>
+
+    <!-- 오른쪽: 타이틀 + 포스터 벽 -->
+    <main class="stage">
+      <header class="stage-header">
+        <h1 class="stage-title">
+          <span class="stage-title-sub">포스터</span>
+          <span class="stage-title-main">전시 제목</span>
+        </h1>
+      </header>
+
+      <section class="wall" id="wall"></section>
+    </main>
+
+  </div>
+
+  <!-- 포스터 클릭 시 확대 보기 -->
+  <div class="viewer" id="viewer" aria-hidden="true">
+    <button class="viewer-close" id="viewerClose" type="button" aria-label="닫기">×</button>
+    <div class="viewer-poster" id="viewerPoster">
+      <p class="viewer-text" id="viewerText"></p>
+      <p class="viewer-author" id="viewerAuthor"></p>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
