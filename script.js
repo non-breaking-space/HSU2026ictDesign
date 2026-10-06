@@ -1,9 +1,3 @@
-/* =========================================================
-   1. 감상평 데이터 — 여기만 고치면 내용이 바뀝니다.
-   author : 하단 목록에 나오는 이름
-   text   : 졸업 감상평 (\n 으로 줄바꿈)
-   color  : orange | green | lavender | peach | blue | magenta | cream
-   ========================================================= */
 const POSTERS = [
   { author: "김민희", text: "끝이 아니라\n다음 장을\n접는 중입니다.", color: "orange" },
   { author: "김은비", text: "밤마다 켜 둔\n모니터 불빛이\n나를 키웠다.", color: "green" },
@@ -34,22 +28,15 @@ const POSTERS = [
   { author: "송정민", text: "안녕,\n그리고\n또 만나요.", color: "magenta" }
 ];
 
-/* 열마다 시작 높이를 다르게 해서 엇갈린 배치를 만듭니다. */
 const COLUMN_OFFSETS = [48, 0, 96, 24, 64, 12];
 
-/* =========================================================
-   2. 요소 가져오기
-   ========================================================= */
 const wall = document.getElementById("wall");
 const nameList = document.getElementById("nameList");
 
-/* 펼쳐 둔 박스 번호 — 창 크기를 바꿔 다시 그려도 유지됩니다. */
 const opened = new Set();
 
 let currentColumnCount = 0;
 
-/* 박스 순서를 무작위로 섞습니다. (새로고침할 때마다 달라짐)
-   하단 이름 목록은 원래 순서 그대로 둡니다. */
 function shuffle(list) {
   const result = list.slice();
   for (let i = result.length - 1; i > 0; i--) {
@@ -63,9 +50,6 @@ function shuffle(list) {
 
 const ORDER = shuffle(POSTERS.map(function (item, index) { return index; }));
 
-/* =========================================================
-   3. 화면 너비에 따른 열 개수
-   ========================================================= */
 function getColumnCount() {
   const width = window.innerWidth;
   if (width <= 480) return 2;
@@ -75,9 +59,6 @@ function getColumnCount() {
   return 5;
 }
 
-/* =========================================================
-   4. 이름 목록 그리기
-   ========================================================= */
 function renderNames() {
   nameList.innerHTML = "";
 
@@ -107,9 +88,6 @@ function renderNames() {
   });
 }
 
-/* =========================================================
-   5. 포스터 벽 그리기
-   ========================================================= */
 function renderWall() {
   const columnCount = getColumnCount();
   if (columnCount === currentColumnCount) return;
@@ -133,7 +111,6 @@ function renderWall() {
     poster.className = "poster color-" + item.color;
     poster.dataset.index = index;
 
-    /* 안쪽: 감상평 */
     const inner = document.createElement("div");
     inner.className = "poster-inner";
 
@@ -149,22 +126,11 @@ function renderWall() {
     inner.appendChild(author);
     poster.appendChild(inner);
 
-    /* 덮개: 삼각형 날개 네 장 */
     ["top", "right", "bottom", "left"].forEach(function (side) {
       const flap = document.createElement("span");
       flap.className = "poster-flap flap-" + side;
       poster.appendChild(flap);
     });
-
-    /* 접는 선 + 가운데 이름 */
-    const folds = document.createElement("span");
-    folds.className = "poster-folds";
-    poster.appendChild(folds);
-
-    const name = document.createElement("span");
-    name.className = "poster-name";
-    name.textContent = item.author;
-    poster.appendChild(name);
 
     if (opened.has(index)) poster.classList.add("is-open");
     poster.setAttribute("aria-expanded", opened.has(index) ? "true" : "false");
@@ -175,16 +141,12 @@ function renderWall() {
 
     columns[position % columnCount].appendChild(poster);
 
-    /* 순서대로 하나씩 켜지는 등장 효과 */
     setTimeout(function () {
       poster.classList.add("is-shown");
     }, 60 * position + 100);
   });
 }
 
-/* =========================================================
-   6. 이름 ↔ 포스터 연결
-   ========================================================= */
 function highlight(index) {
   wall.classList.add("is-dimmed");
   const target = wall.querySelector('.poster[data-index="' + index + '"]');
@@ -206,9 +168,6 @@ function markName(index, isOn) {
   }
 }
 
-/* =========================================================
-   7. 펼치기 / 접기
-   ========================================================= */
 function setOpen(index, isOpen) {
   if (isOpen) {
     opened.add(index);
@@ -221,9 +180,6 @@ function setOpen(index, isOpen) {
   poster.setAttribute("aria-expanded", isOpen ? "true" : "false");
 }
 
-/* =========================================================
-   8. 시작
-   ========================================================= */
 let resizeTimer = null;
 window.addEventListener("resize", function () {
   clearTimeout(resizeTimer);
