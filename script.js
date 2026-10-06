@@ -1,37 +1,37 @@
 /* =========================================================
-   1. 포스터 데이터 — 여기만 고치면 내용이 바뀝니다.
-   author : 왼쪽 목록에 나오는 이름
-   text   : 포스터 문구 (\n 으로 줄바꿈)
+   1. 감상평 데이터 — 여기만 고치면 내용이 바뀝니다.
+   author : 하단 목록에 나오는 이름
+   text   : 졸업 감상평 (\n 으로 줄바꿈)
    color  : orange | green | lavender | peach | blue | magenta | cream
    ========================================================= */
 const POSTERS = [
-  { author: "김민희", text: "작품 제목을\n여기에", color: "orange" },
-  { author: "김은비", text: "작품 제목을\n여기에", color: "green" },
-  { author: "박경일", text: "작품 제목을\n여기에", color: "lavender" },
-  { author: "배하은", text: "작품 제목을\n여기에", color: "peach" },
-  { author: "이유림", text: "작품 제목을\n여기에", color: "blue" },
-  { author: "장세희", text: "작품 제목을\n여기에", color: "magenta" },
-  { author: "허희원", text: "작품 제목을\n여기에", color: "cream" },
-  { author: "김민경", text: "작품 제목을\n여기에", color: "orange" },
-  { author: "김승환", text: "작품 제목을\n여기에", color: "green" },
-  { author: "박세은", text: "작품 제목을\n여기에", color: "lavender" },
-  { author: "이수인", text: "작품 제목을\n여기에", color: "peach" },
-  { author: "임예지", text: "작품 제목을\n여기에", color: "blue" },
-  { author: "장혜진", text: "작품 제목을\n여기에", color: "magenta" },
-  { author: "천인애", text: "작품 제목을\n여기에", color: "cream" },
-  { author: "탁민지", text: "작품 제목을\n여기에", color: "orange" },
-  { author: "홍경원", text: "작품 제목을\n여기에", color: "green" },
-  { author: "황수현", text: "작품 제목을\n여기에", color: "lavender" },
-  { author: "명은서", text: "작품 제목을\n여기에", color: "peach" },
-  { author: "이지선", text: "작품 제목을\n여기에", color: "blue" },
-  { author: "임지예", text: "작품 제목을\n여기에", color: "magenta" },
-  { author: "한진영", text: "작품 제목을\n여기에", color: "cream" },
-  { author: "민채경", text: "작품 제목을\n여기에", color: "orange" },
-  { author: "박선영", text: "작품 제목을\n여기에", color: "green" },
-  { author: "황희망", text: "작품 제목을\n여기에", color: "lavender" },
-  { author: "김세령", text: "작품 제목을\n여기에", color: "peach" },
-  { author: "서동수", text: "작품 제목을\n여기에", color: "blue" },
-  { author: "송정민", text: "작품 제목을\n여기에", color: "magenta" }
+  { author: "김민희", text: "끝이 아니라\n다음 장을\n접는 중입니다.", color: "orange" },
+  { author: "김은비", text: "밤마다 켜 둔\n모니터 불빛이\n나를 키웠다.", color: "green" },
+  { author: "박경일", text: "잘 모르겠다는\n말을 가장 많이\n배운 4년.", color: "lavender" },
+  { author: "배하은", text: "퇴근하고 등교하던\n저녁들이\n벌써 그립다.", color: "peach" },
+  { author: "이유림", text: "서툴렀기에\n더 오래\n기억될 시간.", color: "blue" },
+  { author: "장세희", text: "마감은 지나가고\n사람은\n남았습니다.", color: "magenta" },
+  { author: "허희원", text: "한 번 더 고치자던\n그 말이\n나를 만들었다.", color: "cream" },
+  { author: "김민경", text: "처음 접은 선이\n삐뚤어도\n모양은 나온다.", color: "orange" },
+  { author: "김승환", text: "함께여서\n끝까지\n올 수 있었다.", color: "green" },
+  { author: "박세은", text: "수고했다,\n그리고\n고맙다.", color: "lavender" },
+  { author: "이수인", text: "어디로 펼쳐질지\n몰라서\n더 설렌다.", color: "peach" },
+  { author: "임예지", text: "밤공기와 커피,\n그리고\n우리.", color: "blue" },
+  { author: "장혜진", text: "틀려도 괜찮다는 걸\n여기서\n배웠습니다.", color: "magenta" },
+  { author: "천인애", text: "작은 화면 속에\n큰 마음을\n담았다.", color: "cream" },
+  { author: "탁민지", text: "천천히 와도\n결국\n도착한다.", color: "orange" },
+  { author: "홍경원", text: "네 번의 계절을\n네 번 접어\n여기까지.", color: "green" },
+  { author: "황수현", text: "질문이 많아진 만큼\n나도\n자랐다.", color: "lavender" },
+  { author: "명은서", text: "좋아하는 일을\n계속 좋아할\n용기.", color: "peach" },
+  { author: "이지선", text: "포기하지 않은\n나에게\n박수를.", color: "blue" },
+  { author: "임지예", text: "이제 문을\n열고 나갈\n차례.", color: "magenta" },
+  { author: "한진영", text: "함께 밤을 샌\n이름들을\n잊지 않겠다.", color: "cream" },
+  { author: "민채경", text: "완벽보다\n완성을\n배웠다.", color: "orange" },
+  { author: "박선영", text: "디자인은 결국\n사람을 향한다는\n것.", color: "green" },
+  { author: "황희망", text: "다음에도\n나는 나를\n믿어볼게.", color: "lavender" },
+  { author: "김세령", text: "고민의 흔적이\n곧\n나의 작업.", color: "peach" },
+  { author: "서동수", text: "늦은 시작은\n없다는 걸\n증명했다.", color: "blue" },
+  { author: "송정민", text: "안녕,\n그리고\n또 만나요.", color: "magenta" }
 ];
 
 /* 열마다 시작 높이를 다르게 해서 엇갈린 배치를 만듭니다. */
@@ -51,7 +51,7 @@ const viewerClose = document.getElementById("viewerClose");
 let currentColumnCount = 0;
 
 /* 박스 순서를 무작위로 섞습니다. (새로고침할 때마다 달라짐)
-   왼쪽 이름 목록은 원래 순서 그대로 둡니다. */
+   하단 이름 목록은 원래 순서 그대로 둡니다. */
 function shuffle(list) {
   const result = list.slice();
   for (let i = result.length - 1; i > 0; i--) {
