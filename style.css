@@ -6,6 +6,7 @@
 
 html {
   background: #f5f3ee;
+  overflow-x: hidden;
 }
 
 body {
@@ -29,6 +30,7 @@ button {
 
 .page {
   min-height: 100vh;
+  overflow-x: clip;
 }
 
 .page .name-bar {
@@ -206,6 +208,28 @@ button {
 .wall .wall-column .poster .poster-flap.flap-left {
   clip-path: polygon(0 0, 0 100%, 50% 50%);
   transform-origin: 0 50%;
+}
+
+.wall .wall-column .poster .poster-flap::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+
+.wall .wall-column .poster .poster-flap.flap-top::after {
+  background: rgba(255, 255, 255, 0.14);
+}
+
+.wall .wall-column .poster .poster-flap.flap-left::after {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.wall .wall-column .poster .poster-flap.flap-right::after {
+  background: rgba(0, 0, 0, 0.02);
+}
+
+.wall .wall-column .poster .poster-flap.flap-bottom::after {
+  background: rgba(0, 0, 0, 0.045);
 }
 
 .wall .wall-column .poster.is-open .poster-flap {
