@@ -1,4 +1,3 @@
-/* ---------- 기본 ---------- */
 * {
   margin: 0;
   padding: 0;
@@ -28,12 +27,10 @@ button {
   cursor: pointer;
 }
 
-/* ---------- 전체 레이아웃 ---------- */
 .page {
   min-height: 100vh;
 }
 
-/* ---------- 하단 이름 목록 ---------- */
 .page .name-bar {
   position: fixed;
   left: 0;
@@ -45,7 +42,6 @@ button {
   border-top: 1px solid #111111;
 }
 
-/* 한 줄로 고르게 펼치고, 화면이 좁으면 좌우로 스크롤 */
 .name-bar .name-list {
   display: flex;
   flex-wrap: nowrap;
@@ -81,7 +77,6 @@ button {
   background: #111111;
 }
 
-/* ---------- 무대 ---------- */
 .page .stage {
   flex: 1 1 auto;
   min-width: 0;
@@ -115,7 +110,6 @@ button {
   color: #111111;
 }
 
-/* ---------- 포스터 벽 ---------- */
 .stage .wall {
   display: flex;
   align-items: flex-start;
@@ -130,9 +124,6 @@ button {
   gap: 28px;
 }
 
-/* ---------- 박스 (동서남북) ----------
-   닫힘: 네 개의 삼각형 날개가 덮고 있고 이름만 보입니다.
-   열림(.is-open): 날개가 바깥으로 젖혀지며 안쪽 감상평이 드러납니다. */
 .wall .wall-column .poster {
   position: relative;
   display: block;
@@ -157,7 +148,6 @@ button {
   z-index: 3;
 }
 
-/* 안쪽: 감상평 */
 .wall .wall-column .poster .poster-inner {
   position: absolute;
   inset: 0;
@@ -165,6 +155,12 @@ button {
   flex-direction: column;
   justify-content: space-between;
   padding: 10% 9% 8%;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.wall .wall-column .poster.is-open .poster-inner {
+  opacity: 1;
 }
 
 .wall .wall-column .poster .poster-inner .poster-text {
@@ -184,19 +180,12 @@ button {
   border-top: 1px solid #111111;
 }
 
-/* 날개 네 장: 박스와 같은 그라데이션을 물려받아 삼각형으로 잘라 씁니다. */
 .wall .wall-column .poster .poster-flap {
   position: absolute;
   inset: 0;
   background: inherit;
   pointer-events: none;
   transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.25s ease;
-}
-
-.wall .wall-column .poster .poster-flap::after {
-  content: "";
-  position: absolute;
-  inset: 0;
 }
 
 .wall .wall-column .poster .poster-flap.flap-top {
@@ -219,13 +208,6 @@ button {
   transform-origin: 0 50%;
 }
 
-/* 날개마다 살짝 다른 밝기 — 접힌 종이의 면 느낌 */
-.wall .wall-column .poster .poster-flap.flap-top::after { background: rgba(255, 255, 255, 0.16); }
-.wall .wall-column .poster .poster-flap.flap-right::after { background: rgba(0, 0, 0, 0.03); }
-.wall .wall-column .poster .poster-flap.flap-bottom::after { background: rgba(0, 0, 0, 0.07); }
-.wall .wall-column .poster .poster-flap.flap-left::after { background: rgba(255, 255, 255, 0.07); }
-
-/* 열림: 바깥쪽 변을 축으로 젖혀지며 사라짐 */
 .wall .wall-column .poster.is-open .poster-flap {
   opacity: 0;
   transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease 0.4s;
@@ -250,55 +232,6 @@ button {
   transition-delay: 0.18s, 0.58s;
 }
 
-/* 접는 선: 대각선 두 개 + 가운데 마름모 */
-.wall .wall-column .poster .poster-folds {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  opacity: 0.45;
-  background:
-    linear-gradient(to top right, rgba(17, 17, 17, 0) calc(50% - 0.5px), #111111 calc(50% - 0.5px), #111111 calc(50% + 0.5px), rgba(17, 17, 17, 0) calc(50% + 0.5px)),
-    linear-gradient(to bottom right, rgba(17, 17, 17, 0) calc(50% - 0.5px), #111111 calc(50% - 0.5px), #111111 calc(50% + 0.5px), rgba(17, 17, 17, 0) calc(50% + 0.5px));
-  transition: opacity 0.4s ease;
-}
-
-.wall .wall-column .poster .poster-folds::before {
-  content: "";
-  position: absolute;
-  top: 14.645%;
-  left: 14.645%;
-  width: 70.71%;
-  height: 70.71%;
-  border: 1px solid #111111;
-  transform: rotate(45deg);
-}
-
-.wall .wall-column .poster.is-open .poster-folds {
-  opacity: 0.1;
-}
-
-/* 닫힌 상태에서 가운데에 보이는 이름 */
-.wall .wall-column .poster .poster-name {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  padding: 4px 10px;
-  font-size: 13px;
-  font-weight: 700;
-  line-height: 1.3;
-  white-space: nowrap;
-  color: #111111;
-  background: #ffffff;
-  transform: translate(-50%, -50%);
-  transition: opacity 0.25s ease;
-}
-
-.wall .wall-column .poster.is-open .poster-name {
-  opacity: 0;
-}
-
-/* ---------- 학종이 그라데이션 (안쪽 → 바깥쪽) ----------
-   가운데의 밝은 색에서 가장자리의 진한 색으로 퍼집니다. */
 .wall .wall-column .poster.color-orange {
   background: radial-gradient(ellipse at center, #fffbe0 0%, #ffd84d 34%, #ff8a3d 68%, #ff4f6d 100%);
   box-shadow: 0 10px 28px rgba(255, 110, 70, 0.28);
@@ -340,7 +273,6 @@ button {
   z-index: 4;
 }
 
-/* 이름에 마우스를 올렸을 때: 해당 박스만 남기고 흐리게 */
 .wall.is-dimmed .wall-column .poster.is-shown {
   opacity: 0.15;
 }
@@ -351,7 +283,6 @@ button {
   z-index: 4;
 }
 
-/* ---------- 반응형 ---------- */
 @media (max-width: 720px) {
   .page .name-bar {
     padding: 8px 0 10px;
@@ -376,18 +307,13 @@ button {
   .wall .wall-column .poster .poster-inner .poster-text {
     font-size: clamp(13px, 4.2vw, 22px);
   }
-
-  .wall .wall-column .poster .poster-name {
-    font-size: 12px;
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .wall .wall-column .poster,
+  .wall .wall-column .poster .poster-inner,
   .wall .wall-column .poster .poster-flap,
-  .wall .wall-column .poster.is-open .poster-flap,
-  .wall .wall-column .poster .poster-folds,
-  .wall .wall-column .poster .poster-name {
+  .wall .wall-column .poster.is-open .poster-flap {
     transition: none;
   }
 }
